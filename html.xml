@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension version="3.5" type="plugin" group="system" method="upgrade">
+	<name>plg_system_html</name>
+	<author>Thierry Bela</author>
+	<creationDate>August 2016</creationDate>
+	<copyright>Copyright (C) 2005 - 2016 Open Source Matters. All rights reserved.</copyright>
+	<license>GNU General Public License version 2 or later; see LICENSE.txt</license>
+	<authorEmail>admin@joomla.org</authorEmail>
+	<authorUrl>www.joomla.org</authorUrl>
+	<version>3.5.0.1</version>
+	<description>PLG_SYSTEM_HTML_XML_DESCRIPTION</description>
+	<files>
+		<filename plugin="html">html.php</filename>
+		<folder>language</folder>
+	</files>
+	<config>
+		<fields name="params">
+			<fieldset name="basic">
+				<field name="minifyhtml" label="PLG_HTML_FIELD_MINIFYHTML_LABEL" 
+					description="PLG_HTML_FIELD_MINIFYHTML_DESCRIPTION"
+			type="radio"
+			class="btn-group btn-group-yesno"
+					default="0">
+						<option value="1">JYes</option>
+						<option value="0">JNo</option>
+				</field>
+			</fieldset>
+			<fieldset name="advanced">
+			</fieldset>
+		</fields>
+	</config>
+</extension>
