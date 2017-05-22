@@ -1,20 +1,14 @@
 <?php
 
 /**
- * @package     Joomla.Plugin
- * @subpackage  System.stats
+ * @package     GZip.HTML
+ * @subpackage  HTML.Minify
  *
- * @copyright   Copyright (C) 2005 - 2016 Open Source Matters, Inc. All rights reserved.
+ * @copyright   Copyright (C) 2013 Thierry Bela
  * @license     GNU General Public License version 2 or later; see LICENSE.txt
  */
 defined('_JEXEC') or die;
 
-/**
- * Statistics system plugin. This sends anonymous data back to the Joomla! Project about the
- * PHP, SQL, Joomla and OS versions
- *
- * @since  3.5
- */
 class PlgSystemHTML extends JPlugin {
 
     public function onAfterRender() {
@@ -57,7 +51,7 @@ class PlgSystemHTML extends JPlugin {
         
         $body = str_replace(JURI::getInstance()->getScheme().'://', '//', $body);
         
-        $body = preg_replace_callback('#<html(\s[^>]+)?>(.*?)</head>#s', function ($matches) {
+        $body = preg_replace_callback('#<html(\s[^>]+)?>(.*?)</head>#si', function ($matches) {
             
             return '<html'.$matches[1].'>'. preg_replace('#>[\r\n\t ]+<#s', '><', $matches[2]).'</head>';
         }, $body);
