@@ -30,7 +30,7 @@ class PlgSystemHTML extends JPlugin {
         $scripts = [];
         $tags = ['script', 'link', 'style', 'pre'];
 
-        $body = preg_replace_callback('#(<(('.explode(')|(', $tags).'))[^>]*>)(.*?)</\2>#si', function ($matches) use(&$scripts, $tags) {
+        $body = preg_replace_callback('#(<(('.implode(')|(', $tags).'))[^>]*>)(.*?)</\2>#si', function ($matches) use(&$scripts, $tags) {
 
             $match = $matches[count($tags) + 3];
             $hash = '--***-' . crc32($match) . '-***--';
@@ -38,6 +38,7 @@ class PlgSystemHTML extends JPlugin {
             $scripts[$hash] = $match;
 
             return $matches[1] . $hash . '</'.$matches[2].'>';
+            
         }, $body);
         
         $self = [
