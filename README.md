@@ -8,4 +8,4 @@ This plugin complements the [page optimizer plugin](https://git.inimov.com/proje
 - Remove optional closing tags
 - Remove optional tags
 
-See [here](https://developers.google.com/web/fundamentals/performance/] for more tips
+See [here](https://developers.google.com/web/fundamentals/performance/) for more tips
