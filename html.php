@@ -91,12 +91,11 @@ class PlgSystemHTML extends JPlugin {
             '/([\t ])+/s' => ' ',
             //remove leading and trailing spaces
             '/(^([\t ])+)|(([\t ])+$)/m' => '',
-            // remove JS line comments (simple only); do NOT remove lines containing URL (e.g. 'src="http://server.com/"')!!!
-            //    '~//[a-zA-Z0-9 ]+$~m' => '',
             //remove empty lines (sequence of line-end and white-space characters)
             '/[\r\n]+([\t ]?[\r\n]+)+/s' => "\n",
             //remove quotes from HTML attributes that does not contain spaces; keep quotes around URLs!
             '~([\r\n\t ])?([a-zA-Z0-9:]+)=(["\'])([^\s\3]+)\3([\r\n\t ])?~' => '$1$2=$4$5', //$1 and $4 insert first white-space character found before/after attribute
+            // <p > => <p>
             '#<([^>]+)([^/])\s+>#s' => '<$1$2>'
         ];
 
