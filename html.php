@@ -25,6 +25,10 @@ class PlgSystemHTML extends JPlugin {
             return;
         }
 
+        $profiler = JProfiler::getInstance('Application');
+
+        $profiler->mark('beforeParseHTML');
+		
         $body = $app->getBody();
 
         $scripts = [];
@@ -118,5 +122,8 @@ class PlgSystemHTML extends JPlugin {
         }
 
         $app->setBody($body);
+		
+        $profiler->mark('afterParseHTML');
+		
     }
 }
