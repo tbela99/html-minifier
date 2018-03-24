@@ -54,8 +54,7 @@ class PlgSystemHTML extends JPlugin {
             'input'
         ];
         
-        $body = str_replace(JURI::getInstance()->getScheme().'://', '//', $body);
-        
+        $body = str_replace(JURI::getInstance()->getScheme().'://', '//', $body);        
         $body = preg_replace_callback('#<html(\s[^>]+)?>(.*?)</head>#si', function ($matches) {
             
             return '<html'.$matches[1].'>'. preg_replace('#>[\r\n\t ]+<#s', '><', $matches[2]).'</head>';
