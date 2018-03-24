@@ -27,7 +27,7 @@ class PlgSystemHTML extends JPlugin {
 
         $profiler = JProfiler::getInstance('Application');
 
-        $profiler->mark('beforeParseHTML');
+    //    $profiler->mark('beforeParseHTML');
 		
         $body = $app->getBody();
 
@@ -54,12 +54,11 @@ class PlgSystemHTML extends JPlugin {
             'input'
         ];
         
-        $body = str_replace(JURI::getInstance()->getScheme().'://', '//', $body);
-        
+        $body = str_replace(JURI::getInstance()->getScheme().'://', '//', $body);        
         $body = preg_replace_callback('#<html(\s[^>]+)?>(.*?)</head>#si', function ($matches) {
             
             return '<html'.$matches[1].'>'. preg_replace('#>[\r\n\t ]+<#s', '><', $matches[2]).'</head>';
-        }, $body);
+        }, $body, 1);
         
         //remove optional ending tags (see http://www.w3.org/TR/html5/syntax.html#syntax-tag-omission )
         $remove = [
@@ -85,26 +84,28 @@ class PlgSystemHTML extends JPlugin {
         //remove redundant (white-space) characters
         $replace = [
             
-            '#<!DOCTYPE ([^>]+)>[\n\s]+#si' => '<!DOCTYPE $1>',
+        //    '#<!DOCTYPE ([^>]+)>[\n\s]+#si' => '<!DOCTYPE $1>',
             '#<(('.implode(')|(', $self).'))(\s[^>]*?)?/>#si' => '<$1$'.(count($self) + 2).'>',
             //remove tabs before and after HTML tags
             '#<!--.*?-->#s' => '',
             '/\>[^\S ]+/s' => '>',
             '/[^\S ]+\</s' => '<',
             //shorten multiple whitespace sequences; keep new-line characters because they matter in JS!!!
-            '/([\t ])+/s' => ' ',
+            '/([\t\r\n ])+/s' => ' ',
             //remove leading and trailing spaces
             '/(^([\t ])+)|(([\t ])+$)/m' => '',
             //remove empty lines (sequence of line-end and white-space characters)
-            '/[\r\n]+([\t ]?[\r\n]+)+/s' => "\n",
+            '/[\r\n]+([\t ]?[\r\n]+)+/s' => '',
             //remove quotes from HTML attributes that does not contain spaces; keep quotes around URLs!
             '~([\r\n\t ])?([a-zA-Z0-9:]+)=(["\'])([^\s\3]+)\3([\r\n\t ])?~' => '$1$2=$4$5', //$1 and $4 insert first white-space character found before/after attribute
             // <p > => <p>
             '#<([^>]+)([^/])\s+>#s' => '<$1$2>'
         ];
 
+        $body = preg_replace('#<!DOCTYPE ([^>]+)>[\n\s]+#si', '<!DOCTYPE $1>', $body, 1);
         $body = preg_replace(array_keys($replace), array_values($replace), $body);
         
+        /*
         $body = preg_replace_callback('#(\S)[\r\n\t ]+<(/?)#s', function ($matches) {
             
             if($matches[2] == '/') {
@@ -114,7 +115,7 @@ class PlgSystemHTML extends JPlugin {
 
             return $matches[1].' <';
             
-        }, $body);
+        }, $body);*/
 
         if (!empty($scripts)) {
 
