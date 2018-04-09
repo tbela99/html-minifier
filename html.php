@@ -3,8 +3,11 @@
 /**
  * @package     GZip.HTML
  * @subpackage  HTML.Minify
- *
  * @copyright   Copyright (C) 2017 - 2018 Thierry Bela.
+ *
+ * dual licensed
+ *
+ * @license     LGPL v3
  * @license     MIT License
  */
 defined('_JEXEC') or die;

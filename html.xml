@@ -3,11 +3,11 @@
 	<name>plg_system_html</name>
 	<author>Thierry Bela</author>
 	<creationDate>August 2016</creationDate>
-	<copyright>Copyright (C) 2005 - 2016 Open Source Matters. All rights reserved.</copyright>
-	<license>GNU General Public License version 2 or later; see LICENSE.txt</license>
-	<authorEmail>admin@joomla.org</authorEmail>
-	<authorUrl>www.joomla.org</authorUrl>
-	<version>3.5.0.1</version>
+	<copyright>Copyright (C) 2016 - 2018 Thierry Bela. All rights reserved.</copyright>
+	<license>Released under dual license LGPL v3 | MIT</license>
+	<authorEmail>tbela@tbela.net</authorEmail>
+	<authorUrl>https://www.tbela.net</authorUrl>
+	<version>1.0</version>
 	<description>PLG_SYSTEM_HTML_XML_DESCRIPTION</description>
 	<files>
 		<filename plugin="html">html.php</filename>
@@ -29,4 +29,7 @@
 			</fieldset>
 		</fields>
 	</config>
+	<updateservers>
+		<server type="extension" priority="1" name="plg_system_html_updates">https://github.com/tbela99/html-minifier/blob/master/html.xml</server>
+	</updateservers>
 </extension>
