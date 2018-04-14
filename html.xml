@@ -30,6 +30,6 @@
 		</fields>
 	</config>
 	<updateservers>
-		<server type="extension" priority="1" name="plg_system_html_updates">https://raw.githubusercontent.com/tbela99/html-minifier/blob/master/html.xml</server>
+		<server type="extension" priority="1" name="plg_system_html_updates">https://raw.githubusercontent.com/tbela99/html-minifier/master/html.xml</server>
 	</updateservers>
 </extension>
